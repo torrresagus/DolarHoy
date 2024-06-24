@@ -14,6 +14,7 @@ DESCRIPTION = 'DolarHoy es una librería en Python que facilita la obtención de
 setup(
     name="dolarhoy",
     version=VERSION,
+    url="https://github.com/torrresagus/DolarHoy",
     author="Agustin Torres",
     author_email="agustintorres2001@outlook.com.ar",
     description=DESCRIPTION,
@@ -27,7 +28,7 @@ setup(
         "Intended Audience :: Developers",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3",  
         "Operating System :: OS Independent",
     ],
 )
