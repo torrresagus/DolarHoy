@@ -1,0 +1,5 @@
+build/
+dist/
+dolarhoy.egg-info/
+dolarhoy/__pycache__/
+tests/__pycache__/
