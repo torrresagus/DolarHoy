@@ -1,5 +1,5 @@
 import pytest
-from DolarHoy import DolarHoy
+from dolarhoy import DolarHoy, TipoDolar, TipoOperacion
 
 # URL a utilizar
 url = "https://www.dolarhoy.com/"
@@ -10,18 +10,25 @@ def dolar_hoy():
 
 def test_get_all_data(dolar_hoy):
     data = dolar_hoy.get_all_data()
-    
+
     expected_keys = {
         "dolar_blue", "dolar_oficial", "dolar_bolsa", "contado_con_liqui", "dolar_tarjeta"
     }
-    
+
     for key in expected_keys:
         assert key in data, f"Missing key {key} in data"
         assert isinstance(data[key], dict), f"Value for {key} should be a dict"
-        if 'compra' in data[key]:
-            assert isinstance(data[key]['compra'], float), f"compra for {key} should be a float"
+
+        if key == "dolar_tarjeta":
+            if 'compra' in data[key]:
+                assert data[key]['compra'] is None, f"{key} 'compra' should be None"
+        else:
+            if 'compra' in data[key]:
+                assert isinstance(data[key]['compra'], float), f"compra for {key} should be a float"
+
         if 'venta' in data[key]:
             assert isinstance(data[key]['venta'], float), f"venta for {key} should be a float"
+
 
 def test_get_blue_price(dolar_hoy):
     price = dolar_hoy.get_blue_price()
@@ -67,17 +74,20 @@ def test_get_tarjeta_price(dolar_hoy):
             assert isinstance(price['venta'], float), "'venta' should be a float"
 
 def test_get_price(dolar_hoy):
-    for tipo_dolar in ["dolar_blue", "dolar_oficial", "dolar_bolsa", "contado_con_liqui", "dolar_tarjeta"]:
-        for tipo_operacion in ["compra", "venta"]:
+    for tipo_dolar in TipoDolar:
+        for tipo_operacion in TipoOperacion:
             price = dolar_hoy.get_price(tipo_dolar, tipo_operacion)
             if price is not None:
-                assert isinstance(price, float), f"{tipo_operacion} for {tipo_dolar} should be a float"
+                assert isinstance(price, float), f"{tipo_operacion.value} for {tipo_dolar.value} should be a float"
 
 def test_get_all_prices(dolar_hoy):
-    for tipo_operacion in ["compra", "venta"]:
+    for tipo_operacion in TipoOperacion:
         prices = dolar_hoy.get_all_prices(tipo_operacion)
         for key, value in prices.items():
-            assert isinstance(value, float), f"{tipo_operacion} for {key} should be a float"
+            if key == TipoDolar.TARJETA.value and tipo_operacion == TipoOperacion.COMPRA:
+                assert value is None, f"{tipo_operacion} for {key} should be None"
+            else:
+                assert isinstance(value, float), f"{tipo_operacion} for {key} should be a float"
 
 def test_get_summary(dolar_hoy):
     summary = dolar_hoy.get_summary()
