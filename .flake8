@@ -1,0 +1,14 @@
+# .flake8
+[flake8]
+max-line-length = 100
+exclude = 
+    .git,
+    __pycache__,
+    build,
+    dist,
+    dolarhoy.egg-info,
+    dolarhoy/__pycache__,
+    tests/__pycache__,
+    setup.py
+per-file-ignores =
+    __init__.py: E501
