@@ -46,7 +46,7 @@ jobs:
         run: flake8 .
 
       - name: Type check with mypy
-        run: mypy --exclude '(\.git|__pycache__|build|dist|dolarhoy\.egg-info|dolarhoy\/__pycache__|tests\/__pycache__)' .
+        run: mypy --exclude '(\.git|__pycache__|build|dist|dolarhoy\.egg-info|dolarhoy\/__pycache__|tests\/__pycache__/setup\.py)' .
 
       - name: Build package
         run: python setup.py sdist bdist_wheel
