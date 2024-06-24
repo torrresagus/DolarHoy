@@ -1,5 +1,11 @@
 ![Logo](https://media.licdn.com/dms/image/C4E1BAQH9AcGUgii0ZQ/company-background_10000/0/1643139180993/dlar_hoy_cover?e=1719846000&v=beta&t=-qzaCmD0tI0ut3nfHMtJAFaOqOUuFCZizD8G3pnVTis)
 
+![PyPI](https://img.shields.io/pypi/v/dolarhoy)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dolarhoy)
+![PyPI - License](https://img.shields.io/pypi/l/dolarhoy)
+![GitHub last commit](https://img.shields.io/github/last-commit/torrresagus/dolarhoy)
+[![Python Test and Build](https://github.com/torrresagus/DolarHoy/actions/workflows/ci.yaml/badge.svg)](https://github.com/torrresagus/DolarHoy/actions/workflows/ci.yaml/badge.svg)
+
 # DolarHoy
 
 `DolarHoy` es una librería en Python que permite obtener las cotizaciones de diferentes tipos de dólar en Argentina desde el sitio web [DolarHoy](https://www.dolarhoy.com/). Utiliza las librerías `requests` y `BeautifulSoup` para hacer web scraping y extraer la información relevante.
